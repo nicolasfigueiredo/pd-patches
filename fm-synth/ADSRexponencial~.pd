@@ -1,0 +1,78 @@
+#N canvas 32 116 1423 553 10;
+#X obj 238 342 ADSRlinear~;
+#X obj 93 26 inlet;
+#X obj 259 23 inlet;
+#X obj 355 28 inlet;
+#X obj 438 26 inlet;
+#X obj 509 26 inlet;
+#X obj 570 26 inlet;
+#X obj 709 25 inlet;
+#X obj 239 373 expr~ (1-exp($f2*$v1))/(1-exp($f2));
+#X obj 709 49 s beta;
+#X obj 446 342 r beta;
+#X obj 342 85 r beta;
+#X obj 587 354 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 587 435 snapshot~;
+#X obj 587 405 t b b;
+#X obj 662 436 counter 255;
+#X obj 587 384 metro 20;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array \$0-amplitude2 256 float 3;
+#A 0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0;
+#X coords 0 1 256 0 600 140 1 0 0;
+#X restore 807 32 graph;
+#X obj 604 86 r beta;
+#X obj 22 24 inlet;
+#X obj 238 436 outlet~;
+#X text 26 8 bang;
+#X text 91 8 pico;
+#X text 254 6 t ataque;
+#X text 345 9 ampl sust;
+#X text 414 9 t decaimento;
+#X text 499 8 t sustain;
+#X text 568 11 release;
+#X obj 587 469 tabwrite \$0-amplitude2;
+#X text 710 7 beta;
+#X text 833 211 Envelope ADSR exponencial;
+#X text 832 233 Esse patch repassa os valores fornecidos pelos inlets
+a um [ADSRlinear~] \, corrigindo os valores das amplitude como explicitado
+no enunciado. O valor produzido pelo ADSRlinear~] passa por um [expr~]
+que transforma os trechos lineares em exponenciais.;
+#X text 606 353 Pressione aqui para mostrar o gráfico do envelope
+;
+#X obj 93 111 expr log($f1*exp($f2)-$f1+1)/($f2+0.00001);
+#X obj 355 112 expr log($f1*exp($f2)-$f1+1)/($f2+0.00001);
+#X connect 0 0 8 0;
+#X connect 1 0 33 0;
+#X connect 2 0 0 2;
+#X connect 3 0 34 0;
+#X connect 4 0 0 4;
+#X connect 5 0 0 5;
+#X connect 6 0 0 6;
+#X connect 7 0 9 0;
+#X connect 8 0 13 0;
+#X connect 8 0 20 0;
+#X connect 10 0 8 1;
+#X connect 11 0 33 1;
+#X connect 12 0 16 0;
+#X connect 13 0 28 0;
+#X connect 14 0 13 0;
+#X connect 14 1 15 0;
+#X connect 15 0 28 1;
+#X connect 16 0 14 0;
+#X connect 18 0 34 1;
+#X connect 19 0 0 0;
+#X connect 33 0 0 1;
+#X connect 34 0 0 3;

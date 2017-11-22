@@ -1,0 +1,250 @@
+#N canvas 0 0 1600 818 10;
+#X obj 704 560 pack f f;
+#X msg 50 349 0;
+#X obj 50 562 pack f f;
+#X obj 491 562 pack f f;
+#X obj 337 744 pack f f;
+#X obj 337 709 pipe f f 0;
+#X obj 337 778 line~;
+#X obj 291 561 pack f f;
+#X obj 291 470 f;
+#X obj 718 288 t b b;
+#X obj 481 275 t b b;
+#X obj 291 284 t b b;
+#X obj 57 282 t b b;
+#N canvas 470 377 606 243 somador 0;
+#X obj 33 53 inlet;
+#X obj 60 202 outlet;
+#X obj 33 146 f;
+#X obj 70 147 +;
+#X obj 33 171 t f f;
+#X obj 33 90 t b f;
+#X msg 101 84 0;
+#X obj 101 11 r \$0-b;
+#X obj 101 51 uzi 2;
+#X text 132 83 Reset;
+#X text 19 10 Bang de reset;
+#X text 216 38 Patch que recebe os valores relacionados a tempos do
+envelope \, e os soma. Há uma observação a ser feita: supondo que
+o somador foi resetado e está em zero \, ao receber um valor t1 \,
+ele produzirá o valor zero em sua saída. Somente ao receber um segundo
+valor t2 \, ele produz o valor t1 em sua saída. Ao receber t3 \, produz
+t1+t2 em sua saída \, e assim sucessivamente. Isso faz sentido \,
+pois permite que o somador receba o valor de tempo de ataque \, por
+exemplo \, e passe o valor zero ao [pipe] \, pois essa mensagem sedededed
+;
+#X text 511 126 deve;
+#X text 217 137 ser passada ao [line~] instantaneamente. Já a próxima
+lista deve ser passada ao [line~] quando o ataque do envelope acabar
+\, ou seja \, após um atraso igual ao tempo de ataque.;
+#X connect 0 0 5 0;
+#X connect 2 0 4 0;
+#X connect 3 0 2 1;
+#X connect 4 0 3 0;
+#X connect 4 1 1 0;
+#X connect 5 0 2 0;
+#X connect 5 1 3 1;
+#X connect 6 0 2 0;
+#X connect 6 0 3 1;
+#X connect 7 0 8 0;
+#X connect 8 0 6 0;
+#X restore 621 692 pd somador;
+#X obj 356 145 t b b b b b;
+#X obj 572 792 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 572 877 snapshot~;
+#X obj 572 836 t b b;
+#X obj 645 878 counter 255;
+#X obj 572 815 metro 20;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array \$0-amplitude 256 float 3;
+#A 0 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568 0.239568
+0.239568;
+#X coords 0 1 255 0 600 140 1 0 0;
+#X restore 974 37 graph;
+#X obj 833 374 f;
+#X obj 718 385 f;
+#X obj 604 376 f;
+#X obj 481 377 f;
+#X obj 336 366 f;
+#X obj 95 369 f;
+#X obj 21 44 inlet;
+#X floatatom 125 368 5 0 0 0 - - -;
+#X floatatom 373 366 5 0 0 0 - - -;
+#X floatatom 632 376 5 0 0 0 - - -;
+#X floatatom 521 378 5 0 0 0 - - -;
+#X floatatom 867 374 5 0 0 0 - - -;
+#X floatatom 761 386 5 0 0 0 - - -;
+#X obj 336 879 outlet~;
+#X obj 21 67 s \$0-bng;
+#X obj 356 120 r \$0-bng;
+#X obj 500 177 s \$0-b;
+#X obj 572 911 tabwrite \$0-amplitude;
+#X text 543 28 5o: tempo decaimento;
+#X text 548 177 Primeiro bang: inicializa o somador de tempo (pd somador)
+;
+#X text 555 195 Os bangs sucessivos mandam pares de valores (valor
+\, tempo);
+#X text 575 211 para o pipe \, na ordem em que devem ser processados
+;
+#X text 1055 201 Envelope ADSR linear: ao receber o bang do primeiro
+inlet \, o trigger principal é acionado. A primeira ação do trigger
+é resetar o somador de tempo. Após isso \, os bangs pareiam os valores
+de amplitude com o valor de tempo correspondente \, que vem do somador
+\, e mandam o par para o pipe.;
+#X text 1050 299 Trigger Principal;
+#X text 1050 353 2o bang: primeiro manda o tempo de ataque que vem
+do inlet para o objeto [pack f f] \, soma o tempo de ataque ao valor
+presente no somador e depois manda o valor de pico. Assim \, após
+esse bang chega ao [pipe f f 0] a lista "valor de pico \, tempo de
+ataque" \, a ser passada ao [line~] com um delay de 0 segundos (valor
+do somador resetado).;
+#X text 1049 433 3o bang: segue o esquema do 2o bang \, só que agora
+a lista "amplitude de sustentação \, tempo de decaimento" chegará
+ao [line~] com um atraso igual ao tempo de ataque \, que é o tempo
+presente no somador durante essa etapa.;
+#X text 1049 493 4o e 5o bangs: seguem o esquema do 2o e 3o bang \,
+produzindo listas que são transmitidas ao [line~] com atrasos de (t
+ataque + t decaimento) e (t ataque + t decaimento + t sustain).;
+#X text 106 562 0 \, t release;
+#X text 345 560 ampl sust \, t sustain;
+#X text 544 561 ampl sust \, t decaimento;
+#X text 759 559 ampl pico \, t ataque;
+#X obj 659 637 r \$0-t1;
+#X obj 706 637 r \$0-t0;
+#X obj 611 637 r \$0-t2;
+#X obj 560 638 r \$0-t3;
+#X obj 833 407 s \$0-t0;
+#X obj 613 402 s \$0-t1;
+#X obj 343 396 s \$0-t2;
+#X obj 107 411 s \$0-t3;
+#X obj 265 41 inlet;
+#X obj 265 66 s \$0-t_ataque;
+#X obj 184 43 inlet;
+#X obj 577 47 inlet;
+#X obj 398 43 inlet;
+#X obj 725 44 inlet;
+#X obj 853 45 inlet;
+#X obj 184 66 s \$0-pico;
+#X obj 577 71 s \$0-t_decay;
+#X obj 398 66 s \$0-a_sust;
+#X obj 725 67 s \$0-t_sust;
+#X obj 853 70 s \$0-t_release;
+#X obj 848 349 r \$0-t_ataque;
+#X obj 734 361 r \$0-pico;
+#X obj 619 351 r \$0-t_decay;
+#X obj 496 356 r \$0-a_sust;
+#X obj 372 337 r \$0-t_sust;
+#X obj 125 344 r \$0-t_release;
+#X text 17 13 1o inlet:;
+#X text 8 26 bang que inicia o envelope;
+#X text 143 3 2o: ampltude do pico;
+#X text 248 25 3o: tempo de ataque;
+#X text 371 27 4o: amplitude da sustentação;
+#X text 845 28 7o: tempo de release;
+#X text 680 27 6o: tempo de sustentação;
+#X text 590 790 Pressione aqui para mostrar o gráfico do envelope
+;
+#X msg 199 692 clear;
+#X obj 199 666 r \$0-b;
+#X text 1051 329 1o bang: reseta o somador de tempo e limpa o pipe
+;
+#X connect 0 0 5 0;
+#X connect 1 0 2 0;
+#X connect 2 0 5 0;
+#X connect 3 0 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 4 0;
+#X connect 5 1 4 1;
+#X connect 6 0 16 0;
+#X connect 6 0 34 0;
+#X connect 7 0 5 0;
+#X connect 8 0 7 0;
+#X connect 9 0 22 0;
+#X connect 9 1 21 0;
+#X connect 10 0 24 0;
+#X connect 10 1 23 0;
+#X connect 11 0 8 0;
+#X connect 11 1 25 0;
+#X connect 12 0 1 0;
+#X connect 12 1 26 0;
+#X connect 13 0 5 2;
+#X connect 14 0 12 0;
+#X connect 14 1 11 0;
+#X connect 14 2 10 0;
+#X connect 14 3 9 0;
+#X connect 14 4 37 0;
+#X connect 15 0 19 0;
+#X connect 16 0 38 0;
+#X connect 17 0 16 0;
+#X connect 17 1 18 0;
+#X connect 18 0 38 1;
+#X connect 19 0 17 0;
+#X connect 21 0 0 1;
+#X connect 21 0 56 0;
+#X connect 22 0 0 0;
+#X connect 23 0 3 1;
+#X connect 23 0 57 0;
+#X connect 24 0 3 0;
+#X connect 24 0 8 1;
+#X connect 25 0 7 1;
+#X connect 25 0 58 0;
+#X connect 26 0 2 1;
+#X connect 26 0 59 0;
+#X connect 27 0 35 0;
+#X connect 36 0 14 0;
+#X connect 52 0 13 0;
+#X connect 53 0 13 0;
+#X connect 54 0 13 0;
+#X connect 55 0 13 0;
+#X connect 60 0 61 0;
+#X connect 62 0 67 0;
+#X connect 63 0 68 0;
+#X connect 64 0 69 0;
+#X connect 65 0 70 0;
+#X connect 66 0 71 0;
+#X connect 72 0 21 1;
+#X connect 72 0 32 0;
+#X connect 73 0 22 1;
+#X connect 73 0 33 0;
+#X connect 74 0 23 1;
+#X connect 74 0 30 0;
+#X connect 75 0 24 1;
+#X connect 75 0 31 0;
+#X connect 76 0 29 0;
+#X connect 76 0 25 1;
+#X connect 77 0 28 0;
+#X connect 77 0 26 1;
+#X connect 86 0 5 0;
+#X connect 87 0 86 0;

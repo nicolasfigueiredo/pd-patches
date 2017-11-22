@@ -1,0 +1,66 @@
+#N canvas 57 286 1460 489 10;
+#X obj 472 189 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 426 281 snapshot~;
+#X obj 472 240 t b b;
+#X obj 499 282 counter 255;
+#X obj 472 219 metro 20;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array \$0-amplitudetambor 256 float 3;
+#A 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+#X coords 0 1 255 0 600 140 1 0 0;
+#X restore 804 27 graph;
+#X obj 225 0 t b b;
+#X msg 297 75 1 0;
+#X msg 159 65 0;
+#X obj 159 94 pack f f;
+#X obj 204 66 inlet;
+#X obj 207 168 line~;
+#X obj 206 198 expr~ (1-exp($f2*$v1))/(1-exp($f2));
+#X obj 413 162 inlet;
+#X obj 43 -17 inlet;
+#X obj 206 263 outlet~;
+#X obj 426 325 tabwrite \$0-amplitudetambor;
+#X text 415 142 beta;
+#X text 182 47 duracao da nota;
+#X text 490 188 Pressione aqui para mostrar o envelope no gráfico
+;
+#X text 505 9 2o inlet: duração da nota;
+#X text 505 23 3o inlet: beta;
+#X text 505 -6 1o inlet: bang;
+#X text 914 209 Implementado como um [line~] que \, no momento que
+o envelope é disparado \, recebe primeiramente o comando de ir ao
+valor 1 instantaneamente \, e após isso ir ao valor zero no tempo
+fornecido pelo inlet.;
+#X text 915 259 O sinal de saída do [line~] passa por um [expr~] que
+transforma as rampas lineares em exponenciais \, assim como no [ADSRexponencial~].
+;
+#X text 858 242;
+#X text 915 299 Esse envelope poderia ser implementado usando um [ADSRexponencial~]
+\, mas optei por essa implementação por achar-la mais limpa e clara.
+;
+#X text 915 186 Envelope exponencial;
+#X connect 0 0 4 0;
+#X connect 1 0 16 0;
+#X connect 2 0 1 0;
+#X connect 2 1 3 0;
+#X connect 3 0 16 1;
+#X connect 4 0 2 0;
+#X connect 6 0 8 0;
+#X connect 6 1 7 0;
+#X connect 7 0 11 0;
+#X connect 8 0 9 0;
+#X connect 9 0 11 0;
+#X connect 10 0 9 1;
+#X connect 11 0 12 0;
+#X connect 12 0 15 0;
+#X connect 12 0 1 0;
+#X connect 13 0 12 1;
+#X connect 14 0 6 0;

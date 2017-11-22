@@ -1,0 +1,78 @@
+#N canvas 121 144 1426 492 10;
+#X obj 451 209 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 405 301 snapshot~;
+#X obj 451 260 t b b;
+#X obj 480 302 counter 255;
+#X obj 451 239 metro 20;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array \$0-amplitude3 256 float 3;
+#A 0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0
+-0 -0 -0 -0 -0;
+#X coords 0 1 255 0 600 140 1 0 0;
+#X restore 789 26 graph;
+#X obj 285 262 outlet~;
+#X obj 286 215 ADSRexponencial~;
+#X obj 69 31 inlet;
+#X obj -9 31 inlet;
+#X obj 198 32 inlet;
+#X obj 324 34 inlet;
+#X obj 461 35 inlet;
+#X obj 597 34 inlet;
+#X msg 312 156 0;
+#X obj 312 127 loadbang;
+#X text 40 14 amplitude inicial;
+#X text 601 16 beta;
+#X obj 406 345 tabwrite \$0-amplitude3;
+#X text -7 14 bang;
+#X text 177 15 tempo de ataque;
+#X text 297 16 amplitude de pico;
+#X text 443 15 tempo de relaxamento;
+#X text 472 207 Pressione aqui para mostrar o gráfico do envelope
+;
+#X text 859 184 Envelope de tambor;
+#X text 853 316 ADSRexponencial~;
+#X text 1012 317 ARtambor~;
+#X text 858 204 Implementado como um envelope ADSR exponencial cuja
+amplitude de ataque é a amplitude inicial do envelope de tambor. Por
+isso \, o tempo de ataque é zero. Assim \, o valor da amplitude de
+sustentação e o tempo de decay do ADSR recebem \, respectivamente
+\, a amplitude de pico e o tempo de ataque do ARtambor. O tempo de
+sustentação do ADSR é zero e o tempo de ralaxamento dele é igual
+ao tempo de relaxamento do envelope de tambor.;
+#X text 868 382 A decay ----------------> A pico;
+#X text 868 366 T decay ----------------> T ataque;
+#X text 868 351 A ataque ----------------> A inicial;
+#X text 868 337 T ataque ----------------> 0;
+#X text 868 398 T sustain ---------------> 0;
+#X text 868 414 T release ---------------> T release;
+#X text 1139 343 T: tempo;
+#X text 1139 358 A: amplitude;
+#X text 877 338;
+#X connect 0 0 4 0;
+#X connect 1 0 18 0;
+#X connect 2 0 1 0;
+#X connect 2 1 3 0;
+#X connect 3 0 18 1;
+#X connect 4 0 2 0;
+#X connect 7 0 6 0;
+#X connect 7 0 1 0;
+#X connect 8 0 7 1;
+#X connect 9 0 7 0;
+#X connect 10 0 7 4;
+#X connect 11 0 7 3;
+#X connect 12 0 7 6;
+#X connect 13 0 7 7;
+#X connect 14 0 7 2;
+#X connect 14 0 7 5;
+#X connect 15 0 14 0;

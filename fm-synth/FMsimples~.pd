@@ -1,0 +1,68 @@
+#N canvas 211 103 762 417 10;
+#X obj -35 148 osc~;
+#X obj -36 107 +~;
+#X obj 110 38 osc~;
+#X obj 110 91 *~;
+#X floatatom -23 -32 5 20 20000 1 Freq_Portadora - -;
+#X floatatom 149 -22 5 0 0 1 Freq_de_Modulacao - -;
+#X floatatom 365 -3 5 0 0 1 Amplitude_de_Modulacao - -;
+#X floatatom 365 105 5 0 10 0 I - -;
+#X obj 365 70 /;
+#X obj -34 223 *~;
+#X obj -35 266 outlet~;
+#X obj -37 -94 inlet~;
+#X obj -23 -61 snapshot~;
+#X obj 110 -96 inlet~;
+#X obj 149 -56 snapshot~;
+#X obj 302 -93 inlet~;
+#X obj 365 -55 snapshot~;
+#X obj 149 4 s fm;
+#X obj 380 26 r fm;
+#X obj 487 -91 inlet~;
+#X obj 590 -35 snapshot~;
+#X obj 590 -57 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 590 -2 5 0 0 1 Amplitude - -;
+#X obj 365 -78 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 180 -94 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 21 -94 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 126 64 r~ \$0-AM;
+#X obj 302 -56 s~ \$0-AM;
+#X text -47 -116 Freq portadora;
+#X text 103 -115 Freq de Modulacao;
+#X text 297 -110 Amplitude de modulacao;
+#X text 485 -108 Amplitude;
+#X text 263 172 Patch simples baseado na figura 9 do artigo. Os inlets
+\, da esquerda para a direita \, estao explicitados.;
+#X obj 486 -35 s~ \$0-aamplitude;
+#X obj -18 187 r~ \$0-aamplitude;
+#X connect 0 0 9 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 1;
+#X connect 5 0 17 0;
+#X connect 6 0 8 0;
+#X connect 8 0 7 0;
+#X connect 9 0 10 0;
+#X connect 11 0 1 0;
+#X connect 11 0 12 0;
+#X connect 12 0 4 0;
+#X connect 13 0 2 0;
+#X connect 13 0 14 0;
+#X connect 14 0 5 0;
+#X connect 15 0 16 0;
+#X connect 15 0 27 0;
+#X connect 16 0 6 0;
+#X connect 18 0 8 1;
+#X connect 19 0 20 0;
+#X connect 19 0 33 0;
+#X connect 20 0 22 0;
+#X connect 21 0 20 0;
+#X connect 23 0 16 0;
+#X connect 24 0 14 0;
+#X connect 25 0 12 0;
+#X connect 26 0 3 1;
+#X connect 34 0 9 1;
